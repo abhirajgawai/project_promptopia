@@ -1,0 +1,68 @@
+Project Setup:
+
+create new project command: npx create-next-app@latest ./ to create in current repo
+npm install bcrypt used to hash passwords, mongodb, mongoose next-auth
+create new folder components, models, public, styles, utils, .env,
+copy tailwind.config.js to access to font family and colours
+copy globals.css in the syles
+download assets and paste in public folder
+
+
+page.jsx file for the homepage
+layout.jsx file RAFCE
+--import globals.css file which will be used in all the components
+
+--provider component
+-in provider component wrap other components with in it and render the children and pass the 
+current session
+-all the providers are imported in the layout component and it is wraped with other
+components so that it will be used throughout all the components
+
+--AUTHENTICATION
+-create new api folder
+/..nextauth/route.js
+
+--Go to google.could.console.com to get the GoogleProvider's credintials
+1. create new project
+2. select project
+3. Api services -> oAuth ->create
+4. appname , authorized domain = localhost://3000, developer email,
+5. create credentials, oAuth client id, apptype= web, authorized javascript origin = localhost://3000
+	authorized redirect uri , then create
+6. copy the client id and client secret
+
+
+-- copy paste the google clientid and secret to .env file
+
+
+--MONGODB
+
+-www.mongodb.com/atlas
+
+1. create a clustur > move from dedicated to shared >
+2. Database access know the password 
+3. network acess > add ip current address > add all ip address 0.0.0.0
+4. Go to database > connect > drivers > copy mongoDb Uri
+
+-Add the uri in .env file
+ 
+READ DOCUMENTATION ON www.nextauth.js to better understand how authentication works
+
+--NEXTAUTH_SECRET  (a random string used to hash secrets)
+
+-to generate nextauth secret
+command = openssl rand -base64 32
+-windows people go to www.cryptool-online
+and paste the command
+
+--To authentication
+ setTopLevelAuth to true in next.config.js
+
+
+ERROR -- Error 400, redirect uri mismatch
+
+--  in nextauth.js documentation we have 
+GET/POST/api/auth/callback/provider
+we have to add this to the callback of google.could.console
+-go to google.could.console > webclient > authorized redirect URIs >
+http://localhost:3000/api/auth/callback/google
